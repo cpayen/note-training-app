@@ -2,7 +2,7 @@
 
 namespace Note.Core.Enums
 {
-    public enum Role
+    public enum AppUserRole
     {
         [Display(Name = "User")]
         User = 0,

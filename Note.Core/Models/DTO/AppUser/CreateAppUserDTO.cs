@@ -15,6 +15,6 @@ namespace Note.Core.Models.DTO.AppUser
         public string Password { get; set; }
 
         [Required]
-        public Role Role { get; set; }
+        public AppUserRole Role { get; set; }
     }
 }

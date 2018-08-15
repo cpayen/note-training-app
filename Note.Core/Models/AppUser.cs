@@ -19,6 +19,6 @@ namespace Note.Core.Models
         public string Salt { get; set; }
 
         [JsonProperty(PropertyName = "role", Required = Required.Always)]
-        public Role Role { get; set; }
+        public AppUserRole Role { get; set; }
     }
 }

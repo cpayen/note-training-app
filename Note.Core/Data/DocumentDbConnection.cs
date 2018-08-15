@@ -81,7 +81,7 @@ namespace Note.Core
                         Type = typeof(AppUser).Name,
                         Name = "Admin",
                         Email = "admin@note.com",
-                        Role = Role.Admin,
+                        Role = AppUserRole.Admin,
                         CreatedAt = DateTime.Now,
                         Password = SecurityHelper.EncryptPassword("Pa$$w0rd", salt),
                         Salt = salt
