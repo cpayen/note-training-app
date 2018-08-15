@@ -40,6 +40,7 @@ namespace Note.Api
             services.AddScoped<AuthService>();
             services.AddScoped<UserService>();
             services.AddScoped<NoteService>();
+            services.AddScoped<CategoryService>();
             services.AddScoped<ICurrentUserService, CurrentWebUserService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
