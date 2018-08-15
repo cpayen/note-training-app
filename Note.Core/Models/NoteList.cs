@@ -1,21 +1,9 @@
 ﻿using Newtonsoft.Json;
+using Note.Core.Enums;
 using System.Collections.Generic;
 
 namespace Note.Core.Models
 {
-    public enum NoteListStatus
-    {
-        Enabled = 1,
-        Archived = 2
-    }
-
-    // TODO: Add public notes.
-    //public enum NoteListVisibility
-    //{
-    //    Public = 1,
-    //    Private = 2
-    //}
-
     public class NoteList : Entity
     {
         [JsonProperty(PropertyName = "userId", Required = Required.Always)]

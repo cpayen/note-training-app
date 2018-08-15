@@ -1,4 +1,5 @@
-﻿using Note.Core.Exceptions;
+﻿using Note.Core.Enums;
+using Note.Core.Exceptions;
 using Note.Core.Helpers;
 using Note.Core.Models;
 using Note.Core.Models.DTO.Note;

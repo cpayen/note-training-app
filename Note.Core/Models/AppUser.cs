@@ -1,16 +1,9 @@
 ﻿using Newtonsoft.Json;
+using Note.Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace Note.Core.Models
 {
-    public enum Role
-    {
-        [Display(Name = "User")]
-        User = 0,
-        [Display(Name = "Administrator")]
-        Admin = 1
-    };
-
     public class AppUser : Entity
     {
         [JsonProperty(PropertyName = "name", Required = Required.Always)]

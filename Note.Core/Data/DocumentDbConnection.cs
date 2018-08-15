@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
+using Note.Core.Enums;
 using Note.Core.Helpers;
 using Note.Core.Models;
 using System;

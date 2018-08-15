@@ -1,13 +1,8 @@
 ﻿using Newtonsoft.Json;
+using Note.Core.Enums;
 
 namespace Note.Core.Models
 {
-    public enum NoteItemStatus
-    {
-        Pending = 0,
-        Done = 1
-    }
-
     public class NoteItem : Entity
     {
         [JsonProperty(PropertyName = "name", Required = Required.Always)]

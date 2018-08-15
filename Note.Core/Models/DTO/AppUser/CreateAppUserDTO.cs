@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Note.Core.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Note.Core.Models.DTO.AppUser
 {

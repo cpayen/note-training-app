@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Note.Core.Enums;
+using System;
 using System.Collections.Generic;
 
 namespace Note.Core.Models.DTO.Note
