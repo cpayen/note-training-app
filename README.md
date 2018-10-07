@@ -6,4 +6,5 @@ Small todo-list-like app for training purpose.
 - Cosmos DB storage
 - JWT
 - Swagger doc
+- AutoMapper
 - ...
