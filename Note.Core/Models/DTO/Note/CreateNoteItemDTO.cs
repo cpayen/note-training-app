@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Note.Core.Models.DTO.Note
 {
@@ -8,5 +9,7 @@ namespace Note.Core.Models.DTO.Note
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public List<NoteCategoryDTO> Categories { get; set; }
     }
 }

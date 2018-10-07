@@ -1,4 +1,5 @@
 ﻿using Note.Core.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Note.Core.Models.DTO.Note
@@ -12,5 +13,7 @@ namespace Note.Core.Models.DTO.Note
 
         [Required]
         public NoteItemStatus Status { get; set; }
+        
+        public List<NoteCategoryDTO> Categories { get; set; }
     }
 }

@@ -1,9 +1,9 @@
-﻿using Note.Core.Enums;
+﻿using AutoMapper;
+using Note.Core.Enums;
 using Note.Core.Exceptions;
 using Note.Core.Helpers;
 using Note.Core.Models;
 using Note.Core.Models.DTO.Note;
-using Note.Core.Models.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +15,19 @@ namespace Note.Core.Services
     {
         protected readonly Repository<NoteList> _repository;
         protected readonly ICurrentUserService _currentUserService;
+        protected readonly IMapper _mapper;
 
-        public NoteService(Repository<NoteList> repository, ICurrentUserService currentUserService)
+        public NoteService(Repository<NoteList> repository, ICurrentUserService currentUserService, IMapper mapper)
         {
             _repository = repository;
             _currentUserService = currentUserService;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<NoteListDTO>> GetAllAsync()
         {
             var items = await _repository.GetItemsAsync();
-            return items.ToDTOList();
+            return _mapper.Map<List<NoteListDTO>>(items);
         }
 
         public async Task<NoteListDTO> GetAsync(string id)
@@ -35,23 +37,21 @@ namespace Note.Core.Services
             {
                 throw new NotFoundException("Note list not found.");
             }
-            return item.ToDTO();
+            return _mapper.Map<NoteListDTO>(item);
         }
 
         public async Task<NoteListDTO> CreateAsync(CreateNoteListDTO dto)
         {
             var item = EntityHelper<NoteList>.Create();
 
-            item.UserId = dto.UserId;
-            item.Name = dto.Name;
-            item.Description = dto.Description;
+            _mapper.Map(dto, item);
             item.Order = 0;
             item.Status = NoteListStatus.Enabled;
             item.CreatedAt = DateTime.Now;
             item.CreatedBy = _currentUserService.GetName();
 
             var createdItem = await _repository.CreateItemAsync(item);
-            return createdItem.ToDTO();
+            return _mapper.Map<NoteListDTO>(createdItem);
         }
         
         public async Task<NoteListDTO> UpdateAsync(string id, UpdateNoteListDTO dto)
@@ -62,14 +62,12 @@ namespace Note.Core.Services
                 throw new NotFoundException("Note list not found.");
             }
 
-            item.Name = dto.Name;
-            item.Description = dto.Description;
-            item.Status = dto.Status;
+            _mapper.Map(dto, item);
             item.UpdatedAt = DateTime.Now;
             item.UpdatedBy = _currentUserService.GetName();
 
             var updatedItem = await _repository.UpdateItemAsync(id, item);
-            return updatedItem.ToDTO();
+            return _mapper.Map<NoteListDTO>(updatedItem);
         }
 
         public async Task<bool> DeleteAsync(string id)
@@ -83,7 +81,7 @@ namespace Note.Core.Services
             return await _repository.DeleteItemAsync(id);
         }
 
-        public async Task<NoteListDTO> CreateItemAsync(string noteId, CreateNoteItemDTO itemDto)
+        public async Task<NoteListDTO> CreateItemAsync(string noteId, CreateNoteItemDTO dto)
         {
             var noteList = await _repository.GetItemAsync(noteId);
             if (noteList == null)
@@ -91,27 +89,25 @@ namespace Note.Core.Services
                 throw new NotFoundException("Note list not found.");
             }
 
-            var noteItem = EntityHelper<NoteItem>.Create();
-
-            noteItem.Name = itemDto.Name;
-            noteItem.Description = itemDto.Description;
-            noteItem.Order = 0;
-            noteItem.Status = NoteItemStatus.Pending;
-            noteItem.CreatedAt = DateTime.Now;
-            noteItem.CreatedBy = _currentUserService.GetName();
+            var item = EntityHelper<NoteItem>.Create();
+            
+            _mapper.Map(dto, item);
+            item.Status = NoteItemStatus.Pending;
+            item.CreatedAt = DateTime.Now;
+            item.CreatedBy = _currentUserService.GetName();
 
             if (noteList.Items == null)
             {
                 noteList.Items = new List<NoteItem>();
             }
 
-            noteList.Items.Add(noteItem);
+            noteList.Items.Add(item);
 
             var updatedList = await _repository.UpdateItemAsync(noteId, noteList);
-            return updatedList.ToDTO();
+            return _mapper.Map<NoteListDTO>(updatedList);
         }
 
-        public async Task<NoteListDTO> UpdateItemAsync(string noteId, string itemId, UpdateNoteItemDTO itemDto)
+        public async Task<NoteListDTO> UpdateItemAsync(string noteId, string itemId, UpdateNoteItemDTO dto)
         {
             var noteList = await _repository.GetItemAsync(noteId);
             if (noteList == null)
@@ -119,20 +115,18 @@ namespace Note.Core.Services
                 throw new NotFoundException("Note list not found.");
             }
 
-            var noteItem = noteList.Items.Where(o => o.Id == itemId).FirstOrDefault();
-            if (noteItem == null)
+            var item = noteList.Items.Where(o => o.Id == itemId).FirstOrDefault();
+            if (item == null)
             {
                 throw new NotFoundException("Note item not found.");
             }
 
-            noteItem.Name = itemDto.Name;
-            noteItem.Description = itemDto.Description;
-            noteItem.Status = itemDto.Status;
-            noteItem.UpdatedAt = DateTime.Now;
-            noteItem.UpdatedBy = _currentUserService.GetName();
+            _mapper.Map(dto, item);
+            item.UpdatedAt = DateTime.Now;
+            item.UpdatedBy = _currentUserService.GetName();
 
             var updatedList = await _repository.UpdateItemAsync(noteId, noteList);
-            return updatedList.ToDTO();
+            return _mapper.Map<NoteListDTO>(updatedList);
         }
 
         public async Task<NoteListDTO> DeleteItemAsync(string noteId, string itemId)
@@ -152,7 +146,7 @@ namespace Note.Core.Services
             noteList.Items.Remove(noteItem);
 
             var updatedList = await _repository.UpdateItemAsync(noteId, noteList);
-            return updatedList.ToDTO();
+            return _mapper.Map<NoteListDTO>(updatedList);
         }
     }
 }

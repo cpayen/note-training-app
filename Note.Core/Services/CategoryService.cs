@@ -1,8 +1,8 @@
-﻿using Note.Core.Exceptions;
+﻿using AutoMapper;
+using Note.Core.Exceptions;
 using Note.Core.Helpers;
 using Note.Core.Models;
 using Note.Core.Models.DTO.Note;
-using Note.Core.Models.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,17 +13,19 @@ namespace Note.Core.Services
     {
         protected readonly Repository<NoteCategory> _repository;
         protected readonly ICurrentUserService _currentUserService;
+        protected readonly IMapper _mapper;
 
-        public CategoryService(Repository<NoteCategory> repository, ICurrentUserService currentUserService)
+        public CategoryService(Repository<NoteCategory> repository, ICurrentUserService currentUserService, IMapper mapper)
         {
             _repository = repository;
             _currentUserService = currentUserService;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<NoteCategoryDTO>> GetAllAsync()
         {
             var items = await _repository.GetItemsAsync();
-            return items.ToDTOList();
+            return _mapper.Map<List<NoteCategoryDTO>>(items);
         }
 
         public async Task<NoteCategoryDTO> GetAsync(string id)
@@ -33,21 +35,19 @@ namespace Note.Core.Services
             {
                 throw new NotFoundException("Category not found.");
             }
-            return item.ToDTO();
+            return _mapper.Map<NoteCategoryDTO>(item);
         }
 
         public async Task<NoteCategoryDTO> CreateAsync(CreateNoteCategoryDTO dto)
         {
             var item = EntityHelper<NoteCategory>.Create();
 
-            item.Name = dto.Name;
-            item.Description = dto.Description;
-            item.Color = dto.Color;
+            _mapper.Map(dto, item);
             item.CreatedAt = DateTime.Now;
             item.CreatedBy = _currentUserService.GetName();
 
             var createdItem = await _repository.CreateItemAsync(item);
-            return createdItem.ToDTO();
+            return _mapper.Map<NoteCategoryDTO>(createdItem);
         }
 
         public async Task<NoteCategoryDTO> UpdateAsync(string id, UpdateNoteCategoryDTO dto)
@@ -58,14 +58,12 @@ namespace Note.Core.Services
                 throw new NotFoundException("Category not found.");
             }
 
-            item.Name = dto.Name;
-            item.Description = dto.Description;
-            item.Color = dto.Color;
+            _mapper.Map(dto, item);
             item.UpdatedAt = DateTime.Now;
             item.UpdatedBy = _currentUserService.GetName();
 
             var updatedItem = await _repository.UpdateItemAsync(id, item);
-            return updatedItem.ToDTO();
+            return _mapper.Map<NoteCategoryDTO>(updatedItem);
         }
 
         public async Task<bool> DeleteAsync(string id)

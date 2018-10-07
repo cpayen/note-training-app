@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Note.Core.Enums;
+using System.Collections.Generic;
 
 namespace Note.Core.Models
 {
@@ -11,10 +12,10 @@ namespace Note.Core.Models
         [JsonProperty(PropertyName = "description", NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        [JsonProperty(PropertyName = "order", Required = Required.Always)]
-        public int Order { get; set; }
-
         [JsonProperty(PropertyName = "status", Required = Required.Always)]
         public NoteItemStatus Status { get; set; }
+
+        [JsonProperty(PropertyName = "categories", NullValueHandling = NullValueHandling.Ignore)]
+        public List<NoteCategory> Categories { get; set; }
     }
 }
