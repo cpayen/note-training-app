@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Note.Core.Models.DTO.Note;
 using Note.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Note.Api.Controllers
 {
-    [Route("api/notes")]
+    [Route("api/v1/notes")]
     [ApiController]
     [Authorize(Roles = "Admin,User")]
     public class NotesController : ControllerBase
@@ -40,6 +41,11 @@ namespace Note.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<NoteListDTO>> PostAsync([FromBody] CreateNoteListDTO dto)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentException("Invalid parameter", nameof(dto));
+            }
+
             var note = await _noteService.CreateAsync(dto);
             return Ok(note);
         }
@@ -48,6 +54,11 @@ namespace Note.Api.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<NoteListDTO>> PutAsync(string id, [FromBody] UpdateNoteListDTO dto)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentException("Invalid parameter", nameof(dto));
+            }
+
             var note = await _noteService.UpdateAsync(id, dto);
             return Ok(note);
         }
@@ -64,6 +75,11 @@ namespace Note.Api.Controllers
         [HttpPost("{noteId}/items")]
         public async Task<ActionResult<NoteListDTO>> PostItemAsync(string noteId, [FromBody] CreateNoteItemDTO dto)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentException("Invalid parameter", nameof(dto));
+            }
+
             var note = await _noteService.CreateItemAsync(noteId, dto);
             return Ok(note);
         }
@@ -72,6 +88,11 @@ namespace Note.Api.Controllers
         [HttpPut("{noteId}/items/{itemId}")]
         public async Task<ActionResult<NoteListDTO>> PutItemAsync(string noteId, string itemId, [FromBody] UpdateNoteItemDTO dto)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentException("Invalid parameter", nameof(dto));
+            }
+
             var note = await _noteService.UpdateItemAsync(noteId, itemId, dto);
             return Ok(note);
         }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Note.Core.Models.DTO.Login;
 using Note.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -14,7 +15,7 @@ namespace Note.Api.Controllers
 {
     // TODO: Add token expiration, token refresh...
 
-    [Route("api/auth")]
+    [Route("api/v1/auth")]
     [ApiController]
     [Authorize]
     public class AuthController : ControllerBase
@@ -33,6 +34,11 @@ namespace Note.Api.Controllers
         [Route("requesttoken")]
         public async Task<ActionResult<string>> RequestTokenAsync([FromBody] LoginDTO dto)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentException("Invalid parameter", nameof(dto));
+            }
+
             var claims = await _authService.LoginAsync(dto);
             if(claims == null)
             {

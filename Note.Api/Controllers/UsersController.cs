@@ -2,13 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Note.Core.Models.DTO.AppUser;
 using Note.Core.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Note.Api.Controllers
 {
-    [Route("api/users")]
+    [Route("api/v1/users")]
     [ApiController]
     [Authorize(Roles = "Admin")]
     public class UsersController : ControllerBase
@@ -40,6 +41,11 @@ namespace Note.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<AppUserDTO>> PostAsync([FromBody] CreateAppUserDTO dto)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentException("Invalid parameter", nameof(dto));
+            }
+
             var item = await _userService.CreateAsync(dto);
             return Ok(item);
         }
@@ -48,6 +54,11 @@ namespace Note.Api.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<AppUserDTO>> PutAsync(string id, [FromBody] UpdateAppUserDTO dto)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentException("Invalid parameter", nameof(dto));
+            }
+
             var item = await _userService.UpdateAsync(id, dto);
             return Ok(item);
         }

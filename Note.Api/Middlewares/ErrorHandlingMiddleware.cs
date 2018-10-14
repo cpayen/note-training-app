@@ -33,6 +33,7 @@ namespace Note.Api.Middlewares
             var code = HttpStatusCode.InternalServerError; // 500 if unexpected
 
             if (exception is NotFoundException) code = HttpStatusCode.NotFound;
+            if (exception is UnauthorizedAccessException) code = HttpStatusCode.Forbidden;
 
             var result = JsonConvert.SerializeObject(new { error = exception.Message });
             context.Response.ContentType = "application/json";

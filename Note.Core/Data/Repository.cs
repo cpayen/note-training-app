@@ -16,10 +16,12 @@ namespace Note.Core
     public class Repository<T> where T : Entity
     {
         protected readonly DocumentDBConnection _db;
+        protected readonly ICurrentUserService _userService;
 
-        public Repository(DocumentDBConnection db)
+        public Repository(DocumentDBConnection db, ICurrentUserService userService)
         {
             _db = db;
+            _userService = userService;
         }
 
         public async Task<T> GetItemAsync(string id)
@@ -79,6 +81,13 @@ namespace Note.Core
 
         public async Task<T> CreateItemAsync(T item)
         {
+            if (item is Entity)
+            {
+                var entity = item as Entity;
+                entity.Type = typeof(T).Name;
+                entity.CreatedAt = DateTime.Now;
+                entity.CreatedBy = _userService.GetName();
+            }
             var result = await _db.Client.CreateDocumentAsync(_db.CreateUri(), item);
             if (result.StatusCode == HttpStatusCode.Created)
             {
@@ -89,6 +98,12 @@ namespace Note.Core
 
         public async Task<T> UpdateItemAsync(string id, T item)
         {
+            if (item is Entity)
+            {
+                var entity = item as Entity;
+                entity.UpdatedAt = DateTime.Now;
+                entity.UpdatedBy = _userService.GetName();
+            }
             var response = await _db.Client.ReplaceDocumentAsync(_db.CreateUri(id), item);
             return JsonConvert.DeserializeObject<T>(response.Resource.ToString());
         }

@@ -31,7 +31,6 @@ namespace Note.Core.Profiles
         {
             CreateMap<NoteItem, NoteItemDTO>();
             CreateMap<CreateNoteItemDTO, NoteItem>();
-            //CreateMap<CreateNoteItemDTO, NoteItem>().ForMember(d => d.Categories, m => m.MapFrom(s => s.Categories));
             CreateMap<UpdateNoteItemDTO, NoteItem>();
         }
     }

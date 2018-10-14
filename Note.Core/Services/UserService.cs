@@ -3,7 +3,6 @@ using Note.Core.Exceptions;
 using Note.Core.Helpers;
 using Note.Core.Models;
 using Note.Core.Models.DTO.AppUser;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -40,13 +39,7 @@ namespace Note.Core.Services
 
         public async Task<AppUserDTO> CreateAsync(CreateAppUserDTO dto)
         {
-            var item = EntityHelper<AppUser>.Create();
-
-            item.Name = dto.Name;
-            item.Email = dto.Email;
-            item.Role = dto.Role;
-            item.CreatedAt = DateTime.Now;
-            item.CreatedBy = _currentUserService.GetName();
+            var item = _mapper.Map<AppUser>(dto);
 
             item.Salt = SecurityHelper.GetNewSalt();
             item.Password = SecurityHelper.EncryptPassword(dto.Password, item.Salt);
@@ -63,11 +56,7 @@ namespace Note.Core.Services
                 throw new NotFoundException("User not found.");
             }
 
-            item.Name = dto.Name;
-            item.Email = dto.Email;
-            item.Role = dto.Role;
-            item.UpdatedAt = DateTime.Now;
-            item.UpdatedBy = _currentUserService.GetName();
+            _mapper.Map(dto, item);
 
             var updatedUser = await _repository.UpdateItemAsync(id, item);
             return _mapper.Map<AppUserDTO>(updatedUser);

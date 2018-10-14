@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using Note.Core.Exceptions;
-using Note.Core.Helpers;
 using Note.Core.Models;
 using Note.Core.Models.DTO.Note;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -40,11 +38,7 @@ namespace Note.Core.Services
 
         public async Task<NoteCategoryDTO> CreateAsync(CreateNoteCategoryDTO dto)
         {
-            var item = EntityHelper<NoteCategory>.Create();
-
-            _mapper.Map(dto, item);
-            item.CreatedAt = DateTime.Now;
-            item.CreatedBy = _currentUserService.GetName();
+            var item = _mapper.Map<NoteCategory>(dto);
 
             var createdItem = await _repository.CreateItemAsync(item);
             return _mapper.Map<NoteCategoryDTO>(createdItem);
@@ -59,8 +53,6 @@ namespace Note.Core.Services
             }
 
             _mapper.Map(dto, item);
-            item.UpdatedAt = DateTime.Now;
-            item.UpdatedBy = _currentUserService.GetName();
 
             var updatedItem = await _repository.UpdateItemAsync(id, item);
             return _mapper.Map<NoteCategoryDTO>(updatedItem);

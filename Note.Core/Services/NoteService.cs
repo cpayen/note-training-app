@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Note.Core.Enums;
 using Note.Core.Exceptions;
-using Note.Core.Helpers;
 using Note.Core.Models;
 using Note.Core.Models.DTO.Note;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -42,13 +40,9 @@ namespace Note.Core.Services
 
         public async Task<NoteListDTO> CreateAsync(CreateNoteListDTO dto)
         {
-            var item = EntityHelper<NoteList>.Create();
-
-            _mapper.Map(dto, item);
+            var item = _mapper.Map<NoteList>(dto);
             item.Order = 0;
             item.Status = NoteListStatus.Enabled;
-            item.CreatedAt = DateTime.Now;
-            item.CreatedBy = _currentUserService.GetName();
 
             var createdItem = await _repository.CreateItemAsync(item);
             return _mapper.Map<NoteListDTO>(createdItem);
@@ -63,8 +57,6 @@ namespace Note.Core.Services
             }
 
             _mapper.Map(dto, item);
-            item.UpdatedAt = DateTime.Now;
-            item.UpdatedBy = _currentUserService.GetName();
 
             var updatedItem = await _repository.UpdateItemAsync(id, item);
             return _mapper.Map<NoteListDTO>(updatedItem);
@@ -89,12 +81,8 @@ namespace Note.Core.Services
                 throw new NotFoundException("Note list not found.");
             }
 
-            var item = EntityHelper<NoteItem>.Create();
-            
-            _mapper.Map(dto, item);
+            var item = _mapper.Map<NoteItem>(dto);
             item.Status = NoteItemStatus.Pending;
-            item.CreatedAt = DateTime.Now;
-            item.CreatedBy = _currentUserService.GetName();
 
             if (noteList.Items == null)
             {
@@ -122,8 +110,6 @@ namespace Note.Core.Services
             }
 
             _mapper.Map(dto, item);
-            item.UpdatedAt = DateTime.Now;
-            item.UpdatedBy = _currentUserService.GetName();
 
             var updatedList = await _repository.UpdateItemAsync(noteId, noteList);
             return _mapper.Map<NoteListDTO>(updatedList);
