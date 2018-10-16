@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Note.Api", "Note.Api\Note.Api.csproj", "{08D096D2-275A-496C-B240-3F72A7A36E22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Note.Api", "src\Note.Api\Note.Api.csproj", "{08D096D2-275A-496C-B240-3F72A7A36E22}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Note.Core", "Note.Core\Note.Core.csproj", "{8CAAFE78-16E1-49F0-A8BB-0CCF1CE2C6CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Note.Core", "src\Note.Core\Note.Core.csproj", "{8CAAFE78-16E1-49F0-A8BB-0CCF1CE2C6CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Note.Tests", "Note.Tests\Note.Tests.csproj", "{EE282215-BBF1-4C88-9837-12A3DCC6F006}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Note.Tests", "tests\Note.Tests\Note.Tests.csproj", "{EE282215-BBF1-4C88-9837-12A3DCC6F006}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1CFC9206-B7AC-4151-AC8A-A59CA98052DB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3BF6C411-81BD-4F08-AF28-17C879C4A017}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +34,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{08D096D2-275A-496C-B240-3F72A7A36E22} = {1CFC9206-B7AC-4151-AC8A-A59CA98052DB}
+		{8CAAFE78-16E1-49F0-A8BB-0CCF1CE2C6CF} = {1CFC9206-B7AC-4151-AC8A-A59CA98052DB}
+		{EE282215-BBF1-4C88-9837-12A3DCC6F006} = {3BF6C411-81BD-4F08-AF28-17C879C4A017}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A8DC7CA-BC64-4810-A4B1-4A0D2B1E56D9}
