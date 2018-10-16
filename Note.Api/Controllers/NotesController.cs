@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Note.Api.Filters;
 using Note.Core.Models.DTO.Note;
 using Note.Core.Services;
 using System;
@@ -14,9 +15,9 @@ namespace Note.Api.Controllers
     [Authorize(Roles = "Admin,User")]
     public class NotesController : ControllerBase
     {
-        protected readonly NoteService _noteService;
+        protected readonly INoteService _noteService;
 
-        public NotesController(NoteService noteService)
+        public NotesController(INoteService noteService)
         {
             _noteService = noteService;
         }
@@ -39,26 +40,18 @@ namespace Note.Api.Controllers
 
         // POST api/notes
         [HttpPost]
+        [ValidateModel]
         public async Task<ActionResult<NoteListDTO>> PostAsync([FromBody] CreateNoteListDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ArgumentException("Invalid parameter", nameof(dto));
-            }
-
             var note = await _noteService.CreateAsync(dto);
             return Ok(note);
         }
 
         // PUT api/notes/5
         [HttpPut("{id}")]
+        [ValidateModel]
         public async Task<ActionResult<NoteListDTO>> PutAsync(string id, [FromBody] UpdateNoteListDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ArgumentException("Invalid parameter", nameof(dto));
-            }
-
             var note = await _noteService.UpdateAsync(id, dto);
             return Ok(note);
         }
@@ -73,26 +66,18 @@ namespace Note.Api.Controllers
 
         // POST api/notes/5/items
         [HttpPost("{noteId}/items")]
+        [ValidateModel]
         public async Task<ActionResult<NoteListDTO>> PostItemAsync(string noteId, [FromBody] CreateNoteItemDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ArgumentException("Invalid parameter", nameof(dto));
-            }
-
             var note = await _noteService.CreateItemAsync(noteId, dto);
             return Ok(note);
         }
 
         // PUT api/notes/5/items/6
         [HttpPut("{noteId}/items/{itemId}")]
+        [ValidateModel]
         public async Task<ActionResult<NoteListDTO>> PutItemAsync(string noteId, string itemId, [FromBody] UpdateNoteItemDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ArgumentException("Invalid parameter", nameof(dto));
-            }
-
             var note = await _noteService.UpdateItemAsync(noteId, itemId, dto);
             return Ok(note);
         }

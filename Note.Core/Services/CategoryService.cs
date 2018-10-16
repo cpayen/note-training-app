@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Note.Core.Services
 {
-    public class CategoryService
+    public class CategoryService : ICategoryService
     {
         protected readonly Repository<NoteCategory> _repository;
         protected readonly ICurrentUserService _currentUserService;

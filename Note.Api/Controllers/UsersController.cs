@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Note.Api.Filters;
 using Note.Core.Models.DTO.AppUser;
 using Note.Core.Services;
 using System;
@@ -14,9 +15,9 @@ namespace Note.Api.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersController : ControllerBase
     {
-        protected readonly UserService _userService;
+        protected readonly IUserService _userService;
 
-        public UsersController(UserService userService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
         }
@@ -39,26 +40,18 @@ namespace Note.Api.Controllers
 
         // POST api/users
         [HttpPost]
+        [ValidateModel]
         public async Task<ActionResult<AppUserDTO>> PostAsync([FromBody] CreateAppUserDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ArgumentException("Invalid parameter", nameof(dto));
-            }
-
             var item = await _userService.CreateAsync(dto);
             return Ok(item);
         }
 
         // PUT api/users/5
         [HttpPut("{id}")]
+        [ValidateModel]
         public async Task<ActionResult<AppUserDTO>> PutAsync(string id, [FromBody] UpdateAppUserDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ArgumentException("Invalid parameter", nameof(dto));
-            }
-
             var item = await _userService.UpdateAsync(id, dto);
             return Ok(item);
         }

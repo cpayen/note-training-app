@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Note.Api.Filters;
 using Note.Core.Models.DTO.Login;
 using Note.Core.Services;
 using System;
@@ -20,10 +21,10 @@ namespace Note.Api.Controllers
     [Authorize]
     public class AuthController : ControllerBase
     {
-        protected readonly AuthService _authService;
+        protected readonly IAuthService _authService;
         protected readonly IConfiguration _configuration;
 
-        public AuthController(AuthService authService, IConfiguration configuration)
+        public AuthController(IAuthService authService, IConfiguration configuration)
         {
             _authService = authService;
             _configuration = configuration;
@@ -31,14 +32,10 @@ namespace Note.Api.Controllers
         
         [HttpPost]
         [AllowAnonymous]
+        [ValidateModel]
         [Route("requesttoken")]
         public async Task<ActionResult<string>> RequestTokenAsync([FromBody] LoginDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ArgumentException("Invalid parameter", nameof(dto));
-            }
-
             var claims = await _authService.LoginAsync(dto);
             if(claims == null)
             {

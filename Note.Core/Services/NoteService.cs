@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Note.Core.Services
 {
-    public class NoteService
+    public class NoteService : INoteService
     {
         protected readonly Repository<NoteList> _repository;
         protected readonly ICurrentUserService _currentUserService;

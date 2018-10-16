@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Note.Core.Services
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         protected readonly Repository<AppUser> _appUserRepository;
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Note.Core.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         protected readonly Repository<AppUser> _repository;
         protected readonly ICurrentUserService _currentUserService;

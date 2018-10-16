@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Note.Api.Filters;
 using Note.Core.Models.DTO.Note;
 using Note.Core.Services;
 using System;
@@ -14,9 +15,9 @@ namespace Note.Api.Controllers
     [Authorize(Roles = "Admin,User")]
     public class CategoriesController : ControllerBase
     {
-        protected readonly CategoryService _categoryService;
+        protected readonly ICategoryService _categoryService;
 
-        public CategoriesController(CategoryService categoryService)
+        public CategoriesController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
@@ -39,26 +40,18 @@ namespace Note.Api.Controllers
 
         // POST api/categories
         [HttpPost]
+        [ValidateModel]
         public async Task<ActionResult<NoteCategoryDTO>> PostAsync([FromBody] CreateNoteCategoryDTO dto)
         {
-            if(!ModelState.IsValid)
-            {
-                throw new ArgumentException("Invalid parameter", nameof(dto));
-            }
-
             var item = await _categoryService.CreateAsync(dto);
             return Ok(item);
         }
 
         // PUT api/categories/5
         [HttpPut("{id}")]
+        [ValidateModel]
         public async Task<ActionResult<NoteCategoryDTO>> PutAsync(string id, [FromBody] UpdateNoteCategoryDTO dto)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ArgumentException("Invalid parameter", nameof(dto));
-            }
-
             var item = await _categoryService.UpdateAsync(id, dto);
             return Ok(item);
         }

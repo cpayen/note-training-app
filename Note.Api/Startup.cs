@@ -38,10 +38,10 @@ namespace Note.Api
             services.AddScoped<DocumentDBConnection>();
             services.AddScoped(typeof(Repository<>));
             
-            services.AddScoped<AuthService>();
-            services.AddScoped<UserService>();
-            services.AddScoped<NoteService>();
-            services.AddScoped<CategoryService>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICurrentUserService, CurrentWebUserService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
