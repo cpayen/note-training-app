@@ -11,10 +11,10 @@ namespace Note.Core.Services
     public class UserService : IUserService
     {
         protected readonly Repository<AppUser> _repository;
-        protected readonly ICurrentUserService _currentUserService;
+        protected readonly ICurrentUserInfo _currentUserService;
         protected readonly IMapper _mapper;
 
-        public UserService(Repository<AppUser> repository, ICurrentUserService currentUserService, IMapper mapper)
+        public UserService(Repository<AppUser> repository, ICurrentUserInfo currentUserService, IMapper mapper)
         {
             _repository = repository;
             _currentUserService = currentUserService;

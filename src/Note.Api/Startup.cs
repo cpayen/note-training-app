@@ -8,8 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Note.Api.Middlewares;
-using Note.Core;
+using Note.Core.Data;
 using Note.Core.Services;
+using Note.Infra.Data;
+using Note.Infra.User;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
 
@@ -35,14 +37,14 @@ namespace Note.Api
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddScoped<DocumentDBConnection>();
-            services.AddScoped(typeof(Repository<>));
+            //services.AddScoped<DocumentDBConnection>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<ICurrentUserService, CurrentWebUserService>();
+            services.AddScoped<ICurrentUserInfo, CurrentWebUserInfo>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

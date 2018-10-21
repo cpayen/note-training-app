@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Note.Core.Services;
 
-namespace Note.Core.Services
+namespace Note.Infra.User
 {
-    // TODO: Move it to an "infrastructure" layer?
-    public class CurrentWebUserService : ICurrentUserService
+    public class CurrentWebUserInfo : ICurrentUserInfo
     {
         protected readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CurrentWebUserService(IHttpContextAccessor httpContextAccessor)
+        public CurrentWebUserInfo(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
         }

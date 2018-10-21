@@ -10,10 +10,10 @@ namespace Note.Core.Services
     public class CategoryService : ICategoryService
     {
         protected readonly Repository<NoteCategory> _repository;
-        protected readonly ICurrentUserService _currentUserService;
+        protected readonly ICurrentUserInfo _currentUserService;
         protected readonly IMapper _mapper;
 
-        public CategoryService(Repository<NoteCategory> repository, ICurrentUserService currentUserService, IMapper mapper)
+        public CategoryService(Repository<NoteCategory> repository, ICurrentUserInfo currentUserService, IMapper mapper)
         {
             _repository = repository;
             _currentUserService = currentUserService;

@@ -6,7 +6,7 @@ using Note.Core.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace Note.Core
+namespace Note.Infra.Data
 {
     public class DocumentDBConnection
     {

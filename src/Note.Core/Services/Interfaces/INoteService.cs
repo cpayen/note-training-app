@@ -6,13 +6,13 @@ namespace Note.Core.Services
 {
     public interface INoteService
     {
-        Task<NoteListDTO> CreateAsync(CreateNoteListDTO dto);
-        Task<NoteListDTO> CreateItemAsync(string noteId, CreateNoteItemDTO dto);
-        Task<bool> DeleteAsync(string id);
-        Task<NoteListDTO> DeleteItemAsync(string noteId, string itemId);
-        Task<IEnumerable<NoteListDTO>> GetAllAsync();
-        Task<NoteListDTO> GetAsync(string id);
-        Task<NoteListDTO> UpdateAsync(string id, UpdateNoteListDTO dto);
-        Task<NoteListDTO> UpdateItemAsync(string noteId, string itemId, UpdateNoteItemDTO dto);
+        Task<NoteListDTO> CreateNotListAsync(CreateNoteListDTO dto);
+        Task<NoteListDTO> CreateNoteItemAsync(string noteId, CreateNoteItemDTO dto);
+        Task<bool> DeleteNoteListAsync(string id);
+        Task<NoteListDTO> DeleteNoteItemAsync(string noteId, string itemId);
+        Task<IEnumerable<NoteListDTO>> GetAllNoteListsAsync();
+        Task<NoteListDTO> GetNoteListAsync(string id);
+        Task<NoteListDTO> UpdateNoteListAsync(string id, UpdateNoteListDTO dto);
+        Task<NoteListDTO> UpdateNoteItemAsync(string noteId, string itemId, UpdateNoteItemDTO dto);
     }
 }

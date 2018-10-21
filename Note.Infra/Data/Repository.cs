@@ -11,16 +11,16 @@ using Newtonsoft.Json;
 using Note.Core.Models;
 using Note.Core.Services;
 
-namespace Note.Core
+namespace Note.Infra.Data
 {
     public class Repository<T> where T : Entity
     {
         protected readonly DocumentDBConnection _db;
-        protected readonly ICurrentUserService _userService;
+        protected readonly ICurrentUserInfo _userService;
 
-        public Repository(DocumentDBConnection db, ICurrentUserService userService)
+        public Repository(ICurrentUserInfo userService)
         {
-            _db = db;
+            _db = new DocumentDBConnection();
             _userService = userService;
         }
 

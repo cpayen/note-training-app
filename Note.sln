@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1CFC9206-B7A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3BF6C411-81BD-4F08-AF28-17C879C4A017}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Note.Infra", "Note.Infra\Note.Infra.csproj", "{714C2114-C77A-421C-82D8-2F7542E6CB83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{8CAAFE78-16E1-49F0-A8BB-0CCF1CE2C6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CAAFE78-16E1-49F0-A8BB-0CCF1CE2C6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CAAFE78-16E1-49F0-A8BB-0CCF1CE2C6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{714C2114-C77A-421C-82D8-2F7542E6CB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714C2114-C77A-421C-82D8-2F7542E6CB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714C2114-C77A-421C-82D8-2F7542E6CB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714C2114-C77A-421C-82D8-2F7542E6CB83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{08D096D2-275A-496C-B240-3F72A7A36E22} = {1CFC9206-B7AC-4151-AC8A-A59CA98052DB}
 		{8CAAFE78-16E1-49F0-A8BB-0CCF1CE2C6CF} = {1CFC9206-B7AC-4151-AC8A-A59CA98052DB}
+		{714C2114-C77A-421C-82D8-2F7542E6CB83} = {1CFC9206-B7AC-4151-AC8A-A59CA98052DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9A8DC7CA-BC64-4810-A4B1-4A0D2B1E56D9}

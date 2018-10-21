@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Note.Infra\Note.Infra.csproj" />
     <ProjectReference Include="..\Note.Core\Note.Core.csproj" />
   </ItemGroup>
 

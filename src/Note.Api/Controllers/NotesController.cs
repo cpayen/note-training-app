@@ -26,7 +26,7 @@ namespace Note.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NoteListDTO>>> GetAsync()
         {
-            var items = await _noteService.GetAllAsync();
+            var items = await _noteService.GetAllNoteListsAsync();
             return Ok(items.ToList());
         }
 
@@ -34,7 +34,7 @@ namespace Note.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<NoteListDTO>> GetAsync(string id)
         {
-            var item = await _noteService.GetAsync(id);
+            var item = await _noteService.GetNoteListAsync(id);
             return Ok(item);
         }
 
@@ -43,7 +43,7 @@ namespace Note.Api.Controllers
         [ValidateModel]
         public async Task<ActionResult<NoteListDTO>> PostAsync([FromBody] CreateNoteListDTO dto)
         {
-            var note = await _noteService.CreateAsync(dto);
+            var note = await _noteService.CreateNotListAsync(dto);
             return Ok(note);
         }
 
@@ -52,7 +52,7 @@ namespace Note.Api.Controllers
         [ValidateModel]
         public async Task<ActionResult<NoteListDTO>> PutAsync(string id, [FromBody] UpdateNoteListDTO dto)
         {
-            var note = await _noteService.UpdateAsync(id, dto);
+            var note = await _noteService.UpdateNoteListAsync(id, dto);
             return Ok(note);
         }
 
@@ -60,7 +60,7 @@ namespace Note.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAsync(string id)
         {
-            var result = await _noteService.DeleteAsync(id);
+            var result = await _noteService.DeleteNoteListAsync(id);
             return Ok();
         }
 
@@ -69,7 +69,7 @@ namespace Note.Api.Controllers
         [ValidateModel]
         public async Task<ActionResult<NoteListDTO>> PostItemAsync(string noteId, [FromBody] CreateNoteItemDTO dto)
         {
-            var note = await _noteService.CreateItemAsync(noteId, dto);
+            var note = await _noteService.CreateNoteItemAsync(noteId, dto);
             return Ok(note);
         }
 
@@ -78,7 +78,7 @@ namespace Note.Api.Controllers
         [ValidateModel]
         public async Task<ActionResult<NoteListDTO>> PutItemAsync(string noteId, string itemId, [FromBody] UpdateNoteItemDTO dto)
         {
-            var note = await _noteService.UpdateItemAsync(noteId, itemId, dto);
+            var note = await _noteService.UpdateNoteItemAsync(noteId, itemId, dto);
             return Ok(note);
         }
 
@@ -86,7 +86,7 @@ namespace Note.Api.Controllers
         [HttpDelete("{noteId}/items/{itemId}")]
         public async Task<ActionResult> DeleteItemAsync(string noteId, string itemId)
         {
-            var result = await _noteService.DeleteItemAsync(noteId, itemId);
+            var result = await _noteService.DeleteNoteItemAsync(noteId, itemId);
             return Ok();
         }
     }

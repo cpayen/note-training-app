@@ -2,7 +2,7 @@
 
 namespace Note.Core.Services
 {
-    public interface ICurrentUserService
+    public interface ICurrentUserInfo
     {
         string GetName();
     }
