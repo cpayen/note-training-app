@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Note.Api.Filters;
-using Note.Core.Models.DTO.Login;
+using Note.Core.Entities.DTO.Login;
 using Note.Core.Services;
 using System;
 using System.Collections.Generic;

@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1CFC9206-B7A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3BF6C411-81BD-4F08-AF28-17C879C4A017}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Note.Infra", "Note.Infra\Note.Infra.csproj", "{714C2114-C77A-421C-82D8-2F7542E6CB83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Note.Infra", "src\Note.Infra\Note.Infra.csproj", "{714C2114-C77A-421C-82D8-2F7542E6CB83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

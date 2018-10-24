@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Note.Core.Models.DTO.AppUser;
+using Note.Core.Entities.DTO.AppUser;
 
 namespace Note.Core.Services
 {

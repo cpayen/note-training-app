@@ -2,7 +2,7 @@
 using Microsoft.Azure.Documents.Client;
 using Note.Core.Enums;
 using Note.Core.Helpers;
-using Note.Core.Models;
+using Note.Core.Entities;
 using System;
 using System.Threading.Tasks;
 

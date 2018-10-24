@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using Note.Core.Data;
 using Note.Core.Exceptions;
-using Note.Core.Models;
-using Note.Core.Models.DTO.Note;
+using Note.Core.Entities;
+using Note.Core.Entities.DTO.Note;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,11 +10,11 @@ namespace Note.Core.Services
 {
     public class CategoryService : ICategoryService
     {
-        protected readonly Repository<NoteCategory> _repository;
+        protected readonly IRepository<NoteCategory> _repository;
         protected readonly ICurrentUserInfo _currentUserService;
         protected readonly IMapper _mapper;
 
-        public CategoryService(Repository<NoteCategory> repository, ICurrentUserInfo currentUserService, IMapper mapper)
+        public CategoryService(IRepository<NoteCategory> repository, ICurrentUserInfo currentUserService, IMapper mapper)
         {
             _repository = repository;
             _currentUserService = currentUserService;

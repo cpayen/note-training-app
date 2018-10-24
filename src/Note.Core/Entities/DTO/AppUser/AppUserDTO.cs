@@ -1,16 +1,14 @@
 ﻿using Note.Core.Enums;
 using System;
-using System.Collections.Generic;
 
-namespace Note.Core.Models.DTO.Note
+namespace Note.Core.Entities.DTO.AppUser
 {
-    public class NoteItemDTO
+    public class AppUserDTO
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public NoteItemStatus Status { get; set; }
-        public List<NoteCategoryDTO> Categories { get; set; }
+        public string Email { get; set; }
+        public AppUserRole Role { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }

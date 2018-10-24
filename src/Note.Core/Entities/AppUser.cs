@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Note.Core.Enums;
-using System.ComponentModel.DataAnnotations;
 
-namespace Note.Core.Models
+namespace Note.Core.Entities
 {
     public class AppUser : Entity
     {

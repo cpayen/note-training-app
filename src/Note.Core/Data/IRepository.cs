@@ -1,4 +1,4 @@
-﻿using Note.Core.Models;
+﻿using Note.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;

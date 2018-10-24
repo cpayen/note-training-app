@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Note.Core.Models.DTO.Note
+namespace Note.Core.Entities.DTO.Note
 {
     public class UpdateNoteItemDTO
     {

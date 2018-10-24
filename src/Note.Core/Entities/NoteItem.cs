@@ -2,7 +2,7 @@
 using Note.Core.Enums;
 using System.Collections.Generic;
 
-namespace Note.Core.Models
+namespace Note.Core.Entities
 {
     public class NoteItem : Entity
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Note.Api.Filters;
-using Note.Core.Models.DTO.AppUser;
+using Note.Core.Entities.DTO.AppUser;
 using Note.Core.Services;
 using System;
 using System.Collections.Generic;

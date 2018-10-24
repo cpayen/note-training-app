@@ -8,7 +8,7 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 using Newtonsoft.Json;
-using Note.Core.Models;
+using Note.Core.Entities;
 using Note.Core.Services;
 
 namespace Note.Infra.Data

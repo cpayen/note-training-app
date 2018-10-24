@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Note.Core.Models.DTO.Note;
+using Note.Core.Entities.DTO.Note;
 
 namespace Note.Core.Services
 {

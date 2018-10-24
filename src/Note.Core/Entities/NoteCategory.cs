@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Note.Core.Models
+namespace Note.Core.Entities
 {
     public class NoteCategory : Entity
     {

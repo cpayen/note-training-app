@@ -1,6 +1,7 @@
-﻿using Note.Core.Helpers;
-using Note.Core.Models;
-using Note.Core.Models.DTO.Login;
+﻿using Note.Core.Data;
+using Note.Core.Helpers;
+using Note.Core.Entities;
+using Note.Core.Entities.DTO.Login;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -10,9 +11,9 @@ namespace Note.Core.Services
 {
     public class AuthService : IAuthService
     {
-        protected readonly Repository<AppUser> _appUserRepository;
+        protected readonly IRepository<AppUser> _appUserRepository;
 
-        public AuthService(Repository<AppUser> appUserRepository)
+        public AuthService(IRepository<AppUser> appUserRepository)
         {
             _appUserRepository = appUserRepository;
         }

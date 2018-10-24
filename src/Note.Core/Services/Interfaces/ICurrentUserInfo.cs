@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Note.Core.Services
+﻿namespace Note.Core.Services
 {
     public interface ICurrentUserInfo
     {

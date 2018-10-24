@@ -21,8 +21,8 @@ namespace Note.Core.Enums
     // TODO: Handle public and private notes?
     //public enum NoteListVisibility
     //{
-    //    Public = 1,
-    //    Private = 2
+    //    Public = 0,
+    //    Private = 1
     //}
 
     public enum NoteItemStatus

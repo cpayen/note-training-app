@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Note.Core.Models
+namespace Note.Core.Entities
 {
     public class Entity
     {

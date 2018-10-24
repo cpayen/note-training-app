@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
+using Note.Core.Data;
 using Note.Core.Exceptions;
 using Note.Core.Helpers;
-using Note.Core.Models;
-using Note.Core.Models.DTO.AppUser;
+using Note.Core.Entities;
+using Note.Core.Entities.DTO.AppUser;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,11 +11,11 @@ namespace Note.Core.Services
 {
     public class UserService : IUserService
     {
-        protected readonly Repository<AppUser> _repository;
+        protected readonly IRepository<AppUser> _repository;
         protected readonly ICurrentUserInfo _currentUserService;
         protected readonly IMapper _mapper;
 
-        public UserService(Repository<AppUser> repository, ICurrentUserInfo currentUserService, IMapper mapper)
+        public UserService(IRepository<AppUser> repository, ICurrentUserInfo currentUserService, IMapper mapper)
         {
             _repository = repository;
             _currentUserService = currentUserService;
