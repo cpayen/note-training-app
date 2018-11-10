@@ -10,6 +10,12 @@ namespace Note.Core.Enums
         Admin = 1
     }
 
+    //public enum DashboardVisibility
+    //{
+    //    Public = 0,
+    //    Private = 1
+    //}
+
     public enum NoteListStatus
     {
         [Display(Name = "Enabled")]
@@ -17,13 +23,6 @@ namespace Note.Core.Enums
         [Display(Name = "Archived")]
         Archived = 1
     }
-
-    // TODO: Handle public and private notes?
-    //public enum NoteListVisibility
-    //{
-    //    Public = 0,
-    //    Private = 1
-    //}
 
     public enum NoteItemStatus
     {
