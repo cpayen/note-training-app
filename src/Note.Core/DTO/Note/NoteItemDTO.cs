@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Note.Core.Entities.DTO.Note
+namespace Note.Core.DTO.Note
 {
     public class NoteItemDTO
     {

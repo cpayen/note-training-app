@@ -1,7 +1,7 @@
 ﻿using Note.Core.Data;
 using Note.Core.Helpers;
 using Note.Core.Entities;
-using Note.Core.Entities.DTO.Login;
+using Note.Core.DTO.Login;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;

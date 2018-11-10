@@ -1,7 +1,7 @@
 ﻿using Note.Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Note.Core.Entities.DTO.Note
+namespace Note.Core.DTO.Note
 {
     public class UpdateNoteListDTO
     {

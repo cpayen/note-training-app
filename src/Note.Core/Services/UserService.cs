@@ -3,7 +3,7 @@ using Note.Core.Data;
 using Note.Core.Exceptions;
 using Note.Core.Helpers;
 using Note.Core.Entities;
-using Note.Core.Entities.DTO.AppUser;
+using Note.Core.DTO.AppUser;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

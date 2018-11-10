@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Note.Core.Entities.DTO.Login
+namespace Note.Core.DTO.Login
 {
     public class LoginDTO
     {

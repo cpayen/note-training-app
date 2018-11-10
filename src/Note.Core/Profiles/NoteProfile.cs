@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Note.Core.Entities;
-using Note.Core.Entities.DTO.AppUser;
-using Note.Core.Entities.DTO.Note;
+using Note.Core.DTO.AppUser;
+using Note.Core.DTO.Note;
 
 namespace Note.Core.Profiles
 {

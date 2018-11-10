@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using Note.Core.Enums;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Note.Core.Entities.DTO.Note
+namespace Note.Core.DTO.Note
 {
-    public class CreateNoteItemDTO
+    public class UpdateNoteItemDTO
     {
         [Required]
         public string Name { get; set; }
 
         public string Description { get; set; }
 
+        [Required]
+        public NoteItemStatus Status { get; set; }
+        
         public List<NoteCategoryDTO> Categories { get; set; }
     }
 }

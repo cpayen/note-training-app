@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Note.Core.Entities.DTO.Login;
+using Note.Core.DTO.Login;
 
 namespace Note.Core.Services
 {

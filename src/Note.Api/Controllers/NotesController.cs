@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Note.Api.Filters;
-using Note.Core.Entities.DTO.Note;
+using Note.Core.DTO.Note;
 using Note.Core.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Note.Core.Entities.DTO.Note
+namespace Note.Core.DTO.Note
 {
     public class NoteCategoryDTO
     {

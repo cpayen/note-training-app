@@ -1,7 +1,7 @@
 ﻿using Note.Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace Note.Core.Entities.DTO.AppUser
+namespace Note.Core.DTO.AppUser
 {
     public class UpdateAppUserDTO
     {

@@ -3,7 +3,7 @@ using Note.Core.Data;
 using Note.Core.Enums;
 using Note.Core.Exceptions;
 using Note.Core.Entities;
-using Note.Core.Entities.DTO.Note;
+using Note.Core.DTO.Note;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
