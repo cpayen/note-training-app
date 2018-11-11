@@ -27,5 +27,15 @@ namespace Note.Core.Helpers
             }
             return Convert.ToBase64String(salt);
         }
+
+        public static string GetNewRefreshToken()
+        {
+            byte[] randomNumber = new byte[128 / 8];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+            }
+            return Convert.ToBase64String(randomNumber);
+        }
     }
 }

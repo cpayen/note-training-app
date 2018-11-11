@@ -7,6 +7,6 @@ namespace Note.Core.Services
 {
     public interface IAuthService
     {
-        Task<List<Claim>> LoginAsync(LoginDTO dto);
+        Task<AuthenticatedUserDTO> LoginAsync(LoginDTO dto);
     }
 }

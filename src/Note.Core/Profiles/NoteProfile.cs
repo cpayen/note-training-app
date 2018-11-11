@@ -2,6 +2,7 @@
 using Note.Core.Entities;
 using Note.Core.DTO.AppUser;
 using Note.Core.DTO.Note;
+using Note.Core.DTO.Login;
 
 namespace Note.Core.Profiles
 {
@@ -10,6 +11,7 @@ namespace Note.Core.Profiles
         public AppUserProfile()
         {
             CreateMap<AppUser, AppUserDTO>();
+            CreateMap<AppUser, AuthenticatedUserDTO>();
             CreateMap<CreateAppUserDTO, AppUser>();
             CreateMap<UpdateAppUserDTO, AppUser>();
         }

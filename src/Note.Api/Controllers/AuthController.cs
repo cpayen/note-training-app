@@ -32,28 +32,36 @@ namespace Note.Api.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateModel]
-        [Route("requesttoken")]
-        public async Task<ActionResult<string>> RequestTokenAsync([FromBody] LoginDTO dto)
+        [Route("login")]
+        public async Task<ActionResult<string>> LoginAsync([FromBody] LoginDTO dto)
         {
-            var claims = await _authService.LoginAsync(dto);
-            if(claims == null)
+            var user = await _authService.LoginAsync(dto);
+            if(user == null)
             {
                 return Unauthorized();
             }
 
-            return Ok(BuildToken(claims));
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Name, user.Name),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
+            };
+
+            user.Token = BuildToken(claims);
+
+            return Ok(user);
         }
 
         private string BuildToken(List<Claim> claims)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            // TODO: Add token expiration date, handle refresh token.
+            
             var token = new JwtSecurityToken(
                 _configuration["Jwt:Issuer"],
                 _configuration["Jwt:Issuer"],
-                //expires: DateTime.Now.AddMinutes(60),
                 signingCredentials: creds,
                 claims: claims);
 
