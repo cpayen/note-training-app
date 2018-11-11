@@ -36,13 +36,13 @@ namespace Note.Api
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            //services.AddScoped<DocumentDBConnection>();
+            
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IDashboardService, DashboardService>();
+            services.AddScoped<INoteService, NoteService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICurrentUserInfo, CurrentWebUserInfo>();
 

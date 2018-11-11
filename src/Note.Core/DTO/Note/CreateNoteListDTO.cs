@@ -5,7 +5,7 @@ namespace Note.Core.DTO.Note
     public class CreateNoteListDTO
     {
         [Required]
-        public string UserId { get; set; }
+        public string DashboardId { get; set; }
 
         [Required]
         public string Name { get; set; }

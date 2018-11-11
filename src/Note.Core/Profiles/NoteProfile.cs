@@ -15,6 +15,16 @@ namespace Note.Core.Profiles
         }
     }
 
+    public class DashboardProfile : Profile
+    {
+        public DashboardProfile()
+        {
+            CreateMap<Dashboard, DashboardDTO>();
+            CreateMap<CreateDashboardDTO, Dashboard>();
+            CreateMap<UpdateDashboardDTO, Dashboard>();
+        }
+    }
+
     public class NoteListProfile : Profile
     {
         public NoteListProfile()

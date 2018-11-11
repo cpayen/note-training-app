@@ -10,11 +10,11 @@ namespace Note.Core.Enums
         Admin = 1
     }
 
-    //public enum DashboardVisibility
-    //{
-    //    Public = 0,
-    //    Private = 1
-    //}
+    public enum DashboardVisibility
+    {
+        Public = 0,
+        Private = 1
+    }
 
     public enum NoteListStatus
     {

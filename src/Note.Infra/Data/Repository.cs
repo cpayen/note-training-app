@@ -8,12 +8,13 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 using Newtonsoft.Json;
+using Note.Core.Data;
 using Note.Core.Entities;
 using Note.Core.Services;
 
 namespace Note.Infra.Data
 {
-    public class Repository<T> where T : Entity
+    public class Repository<T> : IRepository<T> where T : Entity
     {
         protected readonly DocumentDBConnection _db;
         protected readonly ICurrentUserInfo _userService;

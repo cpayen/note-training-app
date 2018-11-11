@@ -42,7 +42,6 @@ namespace Note.Core.Services
         public async Task<NoteListDTO> CreateNotListAsync(CreateNoteListDTO dto)
         {
             var item = _mapper.Map<NoteList>(dto);
-            item.Order = 0;
             item.Status = NoteListStatus.Enabled;
 
             var createdItem = await _repository.CreateItemAsync(item);
@@ -71,6 +70,8 @@ namespace Note.Core.Services
                 throw new NotFoundException("Note list not found.");
             }
 
+            //TODO: Delete NoteItems
+
             return await _repository.DeleteItemAsync(id);
         }
 
@@ -83,7 +84,6 @@ namespace Note.Core.Services
             }
 
             var item = _mapper.Map<NoteItem>(dto);
-            //item.ListId = noteId;
             item.Status = NoteItemStatus.Pending;
 
             if (noteList.Items == null)
