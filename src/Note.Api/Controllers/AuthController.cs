@@ -33,7 +33,7 @@ namespace Note.Api.Controllers
         [AllowAnonymous]
         [ValidateModel]
         [Route("login")]
-        public async Task<ActionResult<string>> LoginAsync([FromBody] LoginDTO dto)
+        public async Task<ActionResult<AuthenticatedUserDTO>> LoginAsync([FromBody] LoginDTO dto)
         {
             var user = await _authService.LoginAsync(dto);
             if(user == null)
