@@ -3,7 +3,7 @@
 ## App
 
 - Handle token lifetime / Add token refresh mecanism / lost password (unique) 
-- Console app
+- Add logger / console output (test mails etc.)
 - Add files in note items on blob storage
 - Add app configuration (background image, dark theme / light theme)
 
