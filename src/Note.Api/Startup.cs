@@ -13,6 +13,9 @@ using Note.Core.Services;
 using Note.Infra.Data;
 using Note.Infra.User;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace Note.Api
@@ -33,6 +36,7 @@ namespace Note.Api
             {
                 c.SwaggerDoc("v1", new Info { Title = "Note API", Version = "v1" });
                 c.DescribeAllEnumsAsStrings();
+                c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.XML"));
             });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

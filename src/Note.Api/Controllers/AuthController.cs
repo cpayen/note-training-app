@@ -28,7 +28,12 @@ namespace Note.Api.Controllers
             _authService = authService;
             _configuration = configuration;
         }
-        
+
+        /// <summary>
+        /// Try to log a user in.
+        /// </summary>
+        /// <param name="dto">LoginDTO with username and password.</param>
+        /// <returns>An AuthenticatedUserDTO containing a token if authentication succeeded, null otherwise.</returns>
         [HttpPost]
         [AllowAnonymous]
         [ValidateModel]

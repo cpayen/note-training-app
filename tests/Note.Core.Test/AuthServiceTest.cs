@@ -78,7 +78,7 @@ namespace Note.Core.Test
             };
             result = await _service.LoginAsync(dto);
             Assert.NotNull(result);
-            //Assert.IsType<AuthenticatedUserDTO>(result);
+            Assert.IsType<AuthenticatedUserDTO>(result);
         }
     }
 }
