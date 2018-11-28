@@ -15,6 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Note.Infra", "src\Note.Infr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{F51AD134-62F2-4F16-AC42-D9F414DB0653}"
 	ProjectSection(SolutionItems) = preProject
+		doc\Note.postman_collection.json = doc\Note.postman_collection.json
 		doc\todo.md = doc\todo.md
 	EndProjectSection
 EndProject
