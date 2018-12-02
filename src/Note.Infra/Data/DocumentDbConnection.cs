@@ -10,15 +10,20 @@ namespace Note.Infra.Data
 {
     public class DocumentDBConnection
     {
-        private static readonly string Endpoint = "https://localhost:8081/";
-        private static readonly string Key = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
-        private static readonly string DatabaseId = "note-db-dev";
-        private static readonly string CollectionId = "note-db-coll";
+        private static string Endpoint;
+        private static string Key;
+        private static string DatabaseId;
+        private static string CollectionId;
 
         private static DocumentClient _client { get; set; }
 
-        public DocumentDBConnection()
+        public DocumentDBConnection(string endpoint, string key, string databaseId, string collectionId)
         {
+            Endpoint = endpoint;
+            Key = key;
+            DatabaseId = databaseId;
+            CollectionId = collectionId;
+
             _client = new DocumentClient(new Uri(Endpoint), Key, new ConnectionPolicy { EnableEndpointDiscovery = false });
             CreateDatabaseIfNotExistsAsync().Wait();
             CreateCollectionIfNotExistsAsync().Wait();

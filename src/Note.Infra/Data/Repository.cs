@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Note.Core.Data;
 using Note.Core.Entities;
@@ -16,13 +17,21 @@ namespace Note.Infra.Data
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        protected readonly DocumentDBConnection _db;
+        protected readonly IConfiguration _configuration;
         protected readonly ICurrentUserInfo _userService;
+        protected readonly DocumentDBConnection _db;
 
-        public Repository(ICurrentUserInfo userService)
+        public Repository(IConfiguration configuration, ICurrentUserInfo userService)
         {
-            _db = new DocumentDBConnection();
+            _configuration = configuration;
             _userService = userService;
+
+            var cosmosDB = _configuration["CosmosDB:"];
+            _db = new DocumentDBConnection(
+                _configuration[Constants.CosmosDB.Endpoint],
+                _configuration[Constants.CosmosDB.Key],
+                _configuration[Constants.CosmosDB.DatabaseId],
+                _configuration[Constants.CosmosDB.CollectionId]);
         }
 
         public async Task<T> GetItemAsync(string id)
